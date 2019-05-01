@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-label>Requests</ion-label>
+  </ion-navbar>
+</ion-header>
+
+<ion-content >
+
+<ion-list>
+  <button ion-item *ngFor="let req of requests" >
+    <ion-card class="{{req.status}}">
+    <ion-card-header>
+      Request Number: {{req.requestID}}
+      
+    </ion-card-header>
+
+    <ion-card-content >
+      Date Sent: {{req.requestSent }} <br>
+      Date Needed: {{req.requestNeeded}} <br>
+      Subject: {{req.details}} <br>
+      Items: 
+        <ion-list ion-item *ngFor="let item of req.items">
+            {{item.name}}
+        </ion-list>
+       <br>
+    </ion-card-content>
+  </ion-card>
+</button>
+</ion-list>
+
+<ion-fab class="add-fab-btn">
+    <button ion-fab (click)="openAddRequestModal()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+  <button ion-button secondary menuToggle>Toggle Menu</button>
+</ion-content>
