@@ -1,31 +1,44 @@
+<html>
 <ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
+      <div id="notify"></div>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-label>Requests</ion-label>
+    <ion-title>Requests</ion-title>
+    <ion-buttons end>
+      <button ion-button end (click)="openOptions()"><ion-icon class="setting-icon" name="settings" ></ion-icon></button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content >
+       <img id="loadingscreen" src="https://loading.io/spinners/typing/lg.-text-entering-comment-loader.gif">
 
-<ion-list>
-  <button ion-item *ngFor="let req of requests" >
-    <ion-card class="{{req.status}}">
+<ion-list >
+  <button ion-item detail-none  *ngFor="let req of requests" (click)="openRequest(req)" id="itemCards">
+    <ion-card class="requestHome" >
     <ion-card-header>
-      Request Number: {{req.requestID}}
-      
+      &nbsp; Request Number: {{req.requestID}}
+       <div class="statusCircle {{req.status}}"> </div>
     </ion-card-header>
 
-    <ion-card-content >
-      Date Sent: {{req.requestSent }} <br>
-      Date Needed: {{req.requestNeeded}} <br>
-      Subject: {{req.details}} <br>
-      Items: 
-        <ion-list ion-item *ngFor="let item of req.items">
-            {{item.name}}
-        </ion-list>
-       <br>
+    <ion-card-content class="req-content" >
+            <ion-item detail-none class="det"> Status: {{req.status.toUpperCase()}} </ion-item>
+            <ion-item detail-none *ngIf=" req.status == 'declined' " > Reason: {{req.details}} </ion-item>
+
+            <ion-item detail-none > Date Sent: {{formatTimestamp(req.requestSent) }} </ion-item>
+            <ion-item detail-none > Date Needed: {{formatTimestamp(req.requestNeeded)}} </ion-item>
+            <ion-item detail-none *ngIf=" req.proxyID != ' ' " > Authorized to Claim: {{req.proxyID}} </ion-item>
+            <ion-item detail-none > Items: 
+
+
+       <ion-grid *ngFor="let item of req.items" >
+                <ion-row >
+                  <ion-col> {{item.quantity}}{{item.amount}}{{item.unit}} </ion-col> <ion-col> {{item.name}} </ion-col>
+                </ion-row>
+            </ion-grid>
+          </ion-item>
     </ion-card-content>
   </ion-card>
 </button>
@@ -36,5 +49,5 @@
       <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>
-  <button ion-button secondary menuToggle>Toggle Menu</button>
 </ion-content>
+</html>

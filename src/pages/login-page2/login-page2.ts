@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { User } from '../../models/user';
 import firebase from 'firebase';
 /**
- * Generated class for the LoginPage page.
+ * Generated class for the LoginPage2Page page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -14,14 +14,14 @@ import firebase from 'firebase';
   selector: 'page-login',
   templateUrl: 'login.html',
 })
-export class LoginPage {
+export class LoginPage2Page {
 	user = {} as User;
   
 	constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController) {
 	  }
 
   	ionViewDidLoad() {
-	    console.log('ionViewDidLoad LoginPage');
+	    console.log('ionViewDidLoad LoginPage2Page');
 	  }
 
 	presentLoginError(errormsg) {
@@ -64,7 +64,7 @@ export class LoginPage {
 					    });
 			      
 			  } else {
-			    this.navCtrl.setRoot(LoginPage);
+			    this.navCtrl.setRoot('LoginPage2Page');
 			  }
     	});
 		}catch(e){

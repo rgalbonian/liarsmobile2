@@ -1,0 +1,25 @@
+page-quantity-selector {
+
+}
+
+.quantityModal{
+	height: 40%;
+	width: 80%;
+	top: 100px;
+	left:50px;
+	position: fixed;
+	border: none;
+	-webkit-box-shadow:0px 0px 5px 5px #6d5b5b ;
+	-moz-box-shadow:0px 0px 5px 5px #6d5b5b ;
+	box-shadow:0px 0px 5px 5px #6d5b5b ;
+}
+
+
+.100-btn{
+	width:100%;
+}
+
+#error-amount, #error-quan{
+	color: red;
+	font-style: italic;
+}

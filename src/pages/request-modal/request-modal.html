@@ -1,0 +1,115 @@
+<!--
+  Generated template for the RequestSummaryPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+  	<ion-buttons  style="float:left;">
+	  	<button ion-button (click)="closeRequest()"><ion-icon name="arrow-round-back"></ion-icon>
+	  	</button>
+  	</ion-buttons>
+    <ion-title>Request Details</ion-title>
+  	<ion-buttons end >
+  		<button ion-button id="more-btn" (click)="presentActionSheet()"><ion-icon name="more"></ion-icon>
+  		</button>
+  	</ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<div id="viewRequest">
+		<ion-card class="{{this.requeststatus}}">
+		    <ion-card-content class="req-content">
+		    	<ion-item> Request No. {{this.request.requestID }} </ion-item>
+		      	<ion-item> Status: {{this.request.status.toUpperCase()}} </ion-item>
+		      	<ion-item detail-none *ngIf=" this.request.status == 'declined' " > Reason: {{this.request.details}} </ion-item>
+
+		      	<ion-item> Date Sent: {{formatTimestamp(this.request.requestSent) }} </ion-item>
+		      	<ion-item> Date Needed: {{formatTimestamp(this.request.requestNeeded)}} </ion-item>
+		      	<ion-item> Items: 
+
+		        <ion-grid *ngFor="let item of this.request.items" class="{{this.request.status}}">
+		          	<ion-row>
+		            	<ion-col> {{item.quantity}}{{item.amount}}{{item.unit}} </ion-col> <ion-col> {{item.name}} </ion-col>
+		          	</ion-row>
+		        </ion-grid>
+		      
+		   </ion-item>
+
+		    </ion-card-content>
+	  </ion-card>
+	</div>
+		<div id="editRequest">
+		<ion-card class="{{this.requeststatus}}">
+
+		    <ion-card-content >
+		    	<ion-item> Request No. {{this.request.requestID }} </ion-item>
+		      <ion-item>
+					<label style="display: inline;">Date needed: </label> <span id="origDate" style="display: inline;"></span><br>
+					<input type="datetime-local" name="date" id="chooseDate" class="reqVal" value="this.defaultDate" [(ngModel)]="request.requestNeeded">
+				</ion-item>
+				
+				<ion-item>
+					<span id="origClaimer"></span>
+				</ion-item>
+				<ion-item>
+					<label>Authorized to Claim: </label>  
+					<input type="number" id="auth2" class="reqVal" [(ngModel)]="request.proxyID" title="Enter student number of another user authorized to claim. If none, leave blank." placeholder=" Format: 2015XXXXX">
+					<span id="auth-error2"></span>
+				</ion-item>
+				<ion-item>
+				Items: 		        <button ion-button style="float:right"  (click)="addNewItems()">Add items</button>
+			</ion-item>
+			<ion-item>
+
+                
+				
+				  <ion-grid *ngFor="let item of this.request.items" class="{{this.request.status}}">
+            	    <ion-row >
+		           		<ion-col col-7 style="width: 100px;overflow: auto;">
+		            		{{item.name}} 
+		            	</ion-col>
+		            	
+		            		<ion-col col-4>
+		            			<span  *ngIf=" item.category != 'glassware'"  style="float:right; " value="item.unit">{{item.unit}}</span>
+		            			<span  *ngIf=" item.category == 'glassware'"  style="float:right; " value="item.unit">qty</span>
+
+		            			<input class="edit-input" *ngIf=" item.category == 'glassware'" type="number" id=""  [(ngModel)]="item.quantity" placeholder="Quantity" style="float:right; width: 50px;">
+		            			
+		            			 
+								<input class="edit-input" *ngIf=" item.category != 'glassware'" type="number" id=""  [(ngModel)]="item.amount" placeholder="Amount" style="float:right; width: 50px;">
+		            		</ion-col>
+		            		<ion-col col-1>
+		            			<button style="float:right" (click)="removeThisItem(item)"><ion-icon name="close-circle"></ion-icon></button>
+		            			&emsp;
+		            			
+		            			
+		            		
+		            		</ion-col>
+		            	</ion-row>
+		            </ion-grid>
+		             	
+		          </ion-item>
+		       
+
+
+		    </ion-card-content>
+	  </ion-card>
+	</div>
+
+
+
+</ion-content>
+ <ion-footer class="myfooter">
+    	<button ion-button full (click)="viewRequestHistory()" class="btn-1"> View Request History</button>
+
+  		<!--<button ion-button (click)="editRequest()" class="btn-1"> Edit</button>
+  		<button ion-button (click)="cancelRequestCheck()" class="btn-1"> Delete</button>-->
+  		<button ion-button full (click)="presentSaveConfirm()" class="btn-2"> Save</button>
+  		<button ion-button full (click)="cancelEdit()" class="btn-2"> Cancel</button>
+ </ion-footer>

@@ -1,0 +1,50 @@
+<!--
+  Generated template for the RequestSummaryPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+  	<ion-buttons  style="float:left;">
+	  	<button ion-button (click)="editRequest()"><ion-icon name="arrow-round-back"></ion-icon>
+	  	</button>
+  	</ion-buttons>
+    <ion-title>Request Summary</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card >
+        <ion-card-content class="req-content">
+            <ion-item> Laboratory: {{this.request.laboratory}} </ion-item>
+            <ion-item> Date Needed: {{formatTimestamp(this.request.requestNeeded)}} </ion-item>
+            <ion-item *ngIf=" this.request.proxyID != undefined" > Authorized to Claim: {{this.request.proxyID}} </ion-item>
+
+            <ion-item> Items: 
+
+            <ion-grid *ngFor="let item of this.request.items" class="{{this.request.status}}">
+                <ion-row>
+                  <ion-col> {{item.quantity}}{{item.amount}}{{item.unit}} </ion-col> <ion-col> {{item.name}} </ion-col>
+                </ion-row>
+            </ion-grid>
+          
+       </ion-item>
+
+        </ion-card-content>
+    </ion-card>
+
+
+
+
+</ion-content>
+
+<ion-footer>
+    <ion-buttons>
+      <!--<button ion-button (click)="editRequest()"> Edit</button>-->
+      <button ion-button  full (click)="saveRequestToDB()"> Submit</button>
+  </ion-buttons>
+</ion-footer>

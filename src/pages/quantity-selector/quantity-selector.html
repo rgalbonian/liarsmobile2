@@ -1,0 +1,40 @@
+<!--
+  Generated template for the QuantitySelectorPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<div class="quantityModal">
+<ion-header>
+
+  <ion-navbar color="primary">
+  	<ion-title>Select Quantity</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+	<ion-item id="quantity-item">
+		<input type="number" id="quantity"  [(ngModel)]="item.quantity" placeholder="Quantity">
+		<span id="error-quan"></span>
+	</ion-item>
+	<ion-item id="amount-item">
+		<input type="number" id="amount"  [(ngModel)]="item.amount" placeholder="Amount">
+		<span id="error-amount"></span>
+		 Unit:
+	    <select  [(ngModel)]="item.unit" >
+	      <option value="ml">mL</option>
+	      <option value="l">L</option>
+	      <option value="g">g</option>
+	      <option value="mg">mg</option>
+	    </select>
+	</ion-item>
+		
+
+
+  <ion-buttons end>
+      <button ion-button (click)="addItemQuantity()" id="addItemQuantity-btn" >Add</button>
+      <button ion-button (click)="cancelItem()" >Cancel</button>
+    </ion-buttons>
+  </ion-content>
+</div>

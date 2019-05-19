@@ -1,4 +1,4 @@
-<!--
+
   Generated template for the ItemsPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
@@ -8,14 +8,15 @@
 
   <ion-navbar color="primary">
   	<ion-buttons start>
-	  	<button ion-button (click)="cancelAddRequest()"><ion-icon name="arrow-round-back"></ion-icon>
+	  	<button ion-button (click)="cancelAddItems()"><ion-icon name="arrow-round-back"></ion-icon>
 	  	</button>
   	</ion-buttons>
 
     <ion-title>Select Items</ion-title>
   
   	<ion-buttons end>
-  		<button ion-button end (click)="addRequest()">Next</button>
+  		<button *ngIf=" this.transact == 'addRequest'"  ion-button end (click)="addRequest()">Next</button>
+  		<button *ngIf=" this.transact == 'editRequest'"  ion-button end (click)="editRequest()">Edit Next</button>
   	</ion-buttons>
   </ion-navbar>
 </ion-header>
@@ -24,8 +25,16 @@
 <ion-content padding>
 	
 	<ion-list>
-		<label>Select Items</label>
-		<ion-searchbar placeholder="Filter Items"></ion-searchbar>
+		
+		<ion-searchbar class="searchBar" placeholder="Filter Items" (ionInput)="filterList($event)"></ion-searchbar>
 	</ion-list>
 
+	<ion-list  *ngFor="let item of itemsInventory">
+		<ion-label  class="itemList" (click)="addItem(item)"> {{ item.name }}</ion-label>
+	</ion-list>
 </ion-content>
+
+<ion-footer >
+	<button  full  ion-button (click)="showSelectedItems()">Review Selected Items &nbsp;<ion-icon name="arrow-forward"></ion-icon></button>
+</ion-footer>
+

@@ -1,18 +1,105 @@
 page-home {
+	}
 
-}
+
 
 
 .pending{
-	background-color: #47c9af;
+	background-color: #bdf3f9;
 }
 
 .declined{
-	background-color:pink;
+	background-color:#ff9696;
 }
 
+.released{
+	background-color: #abfcd5;
+}
+
+.ready{
+	background-color:#f7f4aa;
+}
+.preparing{
+	background-color: #fcdd8f;
+}
+.defective{
+	background-color: #cfb8fc;
+}
+
+.complete{
+	background-color:#46f4b5;
+}
 .add-fab-btn{ 
 	position: fixed; 
 	bottom: 10px; 
 	right: 10px; 
+}
+
+
+/*
+ion-card{
+	border-radius: 12px;
+	box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
+}
+
+
+.requestHome{
+-webkit-box-shadow:5px 5px 15px 5px #ffffff ;
+-moz-box-shadow:5px 5px 15px 5px #ffffff ;
+box-shadow:5px 5px 15px 5px #ffffff ;
+}
+*/
+
+button.item{
+	background-color: #f2f2f2;
+
+}
+
+ion-card-header{
+	border-bottom: 2px solid #c3b6c6;
+}
+
+.req-content{
+	padding: 10px !important;
+}
+
+ion-item{
+	background-color: inherit !important;
+}
+
+ion-card{
+	overflow-y: auto;
+}
+
+#notify{
+	height: 10px;
+	width: 10px;
+	background-color: red;
+	border-radius: 5px;
+	display: inline;
+	left: 23px;
+    position: fixed;
+    top: 3px
+}
+
+.statusCircle{
+	display: inline;
+	height: 20px;
+	width: 20px;
+	border-radius: 10px;
+	float: right;
+}
+.requestHome{
+	border-radius: 20px;
+}
+
+.setting-icon {
+  font-size: 28px;
+}
+
+#loadingscreen{
+	margin-left: 15%;
+}
+scroll-content {
+  overflow-y: scroll;
 }

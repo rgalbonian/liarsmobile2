@@ -1,15 +1,17 @@
 <ion-content padding center text-center>
+	<div class="title-div">
 	<ion-title> LIARS  </ion-title>
 	Laboratory Inventory and Request System
-
-	<ion-list>
-		<ion-item>
-			<ion-input placeholder="Email" [(ngModel)]="user.email"></ion-input>
-		</ion-item>
-		<ion-item>
-			<ion-input placeholder="Password" [(ngModel)]="user.password" type="password"></ion-input>
-		</ion-item>
-	</ion-list> 
+	</div>
+	<div class="input-div">
+		<ion-list>
+			
+				<ion-input placeholder="Email" [(ngModel)]="user.email" autofocus></ion-input>
+			
+				<ion-input placeholder="Password" [(ngModel)]="user.password" type="password"></ion-input>
+			
+		</ion-list> 
 
 	<button ion-button full (click)="login()">Log in</button>
+	</div>
 </ion-content>

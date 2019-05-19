@@ -7,7 +7,7 @@ import { AddRequestModalPage } from './add-request-modal';
     AddRequestModalPage,
   ],
   imports: [
-    IonicPageModule.forChild(AddRequestModalPage),
+    IonicPageModule.forChild(AddRequestModalPage)
   ],
   exports: [
     AddRequestModalPage
